@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row mx-auto" id="login-container">
+    <div class="col-md-12 text-center img-fluid mr-2 mb-3" id="login-image">
+      <img
+        src="https://colorlib.com/etc/lf/Login_v1/images/img-01.png"
+        alt="Login"
+      />
+    </div>
+    <div class="col-md-6 mx-auto">
+      <div class="h1 text-center mb-4" id="login-title">
+        User Login
+      </div>
+      <form [formGroup]="loginForm">
+        <!-- UserName -->
+        <div class="input-group mb-3" [class.focused]="isUserNameFocused">
+          <div class="input-group-prepend">
+            <div
+              class="input-group-text border-circle"
+              [class.focused-icon]="isUserNameFocused"
+            >
+              <fa-icon [icon]="userIcon"></fa-icon>
+            </div>
+          </div>
+          <input
+            type="text"
+            class="form-control border-circle mx-auto bg-light"
+            placeholder="Username"
+            (focus)="onUserNameFocus()"
+            (blur)="onUserNameUnfocus()"
+            formControlName="userName"
+          />
+        </div>
+
+        <!-- UserName -->
+        <div class="input-group mb-3" [class.focused]="isPasswordFocused">
+          <div class="input-group-prepend">
+            <div
+              class="input-group-text border-circle"
+              [class.focused-icon]="isPasswordFocused"
+            >
+              <fa-icon [icon]="passwordIcon"></fa-icon>
+            </div>
+          </div>
+          <input
+            type="password"
+            class="form-control border-circle mx-auto bg-light"
+            placeholder="Password"
+            (focus)="onPasswordFocus()"
+            (blur)="onPasswordUnfocus()"
+            formControlName="password"
+          />
+        </div>
+
+        <button class="btn btn-danger w-100 border-circle shadow" (click)="login()">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

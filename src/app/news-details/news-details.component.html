@@ -1,0 +1,79 @@
+<div class="container mt-4 bg-light p-0" id="news-article">
+  <!-- Title -->
+  <div class="text-center bg-dark text-white p-4" id="title">
+    {{ newsDetails.title | titlecase }}
+  </div>
+
+  <!-- Subtitle -->
+  <div class="container-fluid" id="subtitle">
+    <div class="w-50 mx-auto p-1">
+      <fa-icon [icon]="calendarIcon" class="mr-3"></fa-icon>
+      {{ newsDetails.subtitle | truncate: 10 | date: 'fullDate' }}
+    </div>
+  </div>
+
+  <!-- Image -->
+  <div class="w-100 text-center">
+    <img
+      [src]="newsDetails.imageURL"
+      alt="Content Image"
+      class="img-fluid my-5"
+    />
+  </div>
+
+  <!-- News Details -->
+  <div id="content" class="blockquote">
+    {{ newsDetails.content | trailingRemove | titlecase }}
+  </div>
+
+  <!-- Comments -->
+  <div class="w-100 text-dark h5 text-center mt-5 px-4" id="comments-count">
+    <div class="d-flex justify-content-between">
+      <!-- Comment Icon -->
+      <div>
+        <fa-layers class="mr-2">
+          <fa-icon [icon]="commentIcon" style="font-size: 2rem;"></fa-icon>
+          <fa-layers-text
+            title="Menu"
+            [content]="countOfComments"
+            transform="shrink-6 right-4"
+            [styles]="{ 'font-size': '1.2em', color: 'white' }"
+          ></fa-layers-text>
+        </fa-layers>
+        Comments
+      </div>
+      <kbd (click)="onComments()" style="cursor: pointer;" class="bg-dark">
+        {{ toggleComments }} Comments
+      </kbd>
+    </div>
+
+    <div class="mx-3 pt-2 text-left" *ngIf="isCommentClicked">
+      <hr />
+      <!-- Comments -->
+      <div>
+        <div
+          class="row mb-4"
+          *ngFor="let comment of commentsArray | slice: 0:10"
+        >
+          <div class="col-md-1">
+            <img
+              src="https://cdn2.iconfinder.com/data/icons/flatfaces-everyday-people-square/128/beard_male_man_face_avatar-512.png"
+              alt="Profile"
+              id="profile-img"
+            />
+          </div>
+          <div class="col-md-11 text-left">
+            <span id="comment-user-name">{{ comment.name | titlecase }}</span>
+            <span
+              id="comment-body"
+              class="text-justify"
+              style="font-weight: 400;"
+              >{{ comment.body | titlecase }}</span
+            >
+            <hr />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

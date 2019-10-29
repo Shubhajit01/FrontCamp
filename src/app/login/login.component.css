@@ -1,0 +1,50 @@
+#login-container {
+  margin-top: 20%;
+}
+
+.border-circle {
+  border-radius: 25px;
+}
+
+#login-image {
+  /* max-width: 250px; */
+}
+
+input,
+input:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.focused {
+  border-radius: 25px;
+  box-shadow: 0 0 2.5px 0.2rem rgb(118, 205, 216, 0.8);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.focused-icon {
+  background-color: #343a40;
+  color: white;
+}
+
+#login-image img:hover {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,19 @@
+<div class="container bg-light border" id="content" *ngIf="content()">
+  <div class="row text-center justify-content-md-start justify-content-center">
+    <img
+      class="col-md-3 text-left"
+      [src]="news.urlToImage"
+      alt="Content Image"
+    />
+    <div
+      class="right-panel align-self-stretch col-md-9 text-md-left text-center"
+    >
+      <h1 class="display-4">{{ news.title }}</h1>
+      <h6>Created On: {{ news.publishedAt | truncate: 10 | date }}</h6>
+      <span class="text-muted">{{ content() | trailingRemove |truncate }}</span>
+      <button class="btn btn-info" (click)="onContinueReading()">
+        Continue Reading
+      </button>
+    </div>
+  </div>
+</div>
