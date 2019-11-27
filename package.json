@@ -1,0 +1,28 @@
+{
+  "name": "hometask5",
+  "version": "1.0.0",
+  "description": "FrontCamp Task",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --open",
+    "prod": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/polyfill": "^7.6.0",
+    "@babel/preset-env": "^7.6.3",
+    "axios": "^0.19.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "fetch-polyfill": "^0.8.2",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^1.0.0",
+    "url-loader": "^2.2.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {}
+}

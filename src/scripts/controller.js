@@ -18,24 +18,27 @@ class NewsChannel {
         if (this.channel === 'in') {
             url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=${this.APIKey}`;
         } else {
-            let proxy = `https://cors-anywhere.herokuapp.com/`;
-            url = `${proxy}https://newsapi.org/v2/top-headlines?sources=${this.channel}&apiKey=${this.APIKey}`;
+            url = `https://newsapi.org/v2/top-headlines?sources=${this.channel}&apiKey=${this.APIKey}`;
         }
         console.log (url);
         try {
+            
             // Fetch the promise object from url
             let result = await fetch(url);
-            
+                
             // Convert to JSON
             let data = await result.json();
 
             if (data.status === 'error') {
-                alert ('There was some error!\nPlease refresh the page.\nIf the problem persists, try again later.')
-                return [];
+                throw new Error("Bad response from server");
             }
             
             // Iterate through each articles of the data object
             let newsObject = [];
+
+            if (data.articles.length === 0) {
+                return [];
+            }
             data.articles.forEach(article => {
                 // Create A News Object with the available data
                 // [ID, Name Of Channel, Image URL, Title, Subtitle, Content]
@@ -48,7 +51,7 @@ class NewsChannel {
                     article.content === null ? article.description : article.content);
                 
                 // Push to the array of News
-                newsObject.push (news);
+                newsObject.push(news);
             });
             return newsObject;
         } catch (error) {
@@ -99,6 +102,9 @@ let getAndDisplayNews = () => {
         for (let i = 0; i < button.length; i++) {
             button[i].addEventListener('click', () => modalAppear(i));
         }
+    })
+    .catch((error) => {
+        console.log(error);
     });
 }
 

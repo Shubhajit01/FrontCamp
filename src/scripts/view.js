@@ -1,11 +1,12 @@
 import {newsChannels} from "./model.js";
+import scrollToTopBtn from '../assets/scroll-to-top.png';
+import modalCloseBtn from  '../assets/close-btn.png';
 
 let renderScrollToTop = () => {
     let image = document.createElement('img');
     image.alt = 'Scroll To Top';
     image.className = 'scroll-to-top';
-    image.src = './assets/scroll-to-top.png';
-
+    image.src = scrollToTopBtn; 
     document.querySelector('body').appendChild(image);
 }
 
@@ -31,7 +32,6 @@ class Section {
     }
 
     create() {
-
         // ***********************************************
         // *            *   Title                        *
         // *    Image   *   Subtitle                     *
@@ -54,17 +54,18 @@ class Section {
         
         let table = document.createElement('table');
         section.appendChild(table);
+        
 
-        // Create an array of the no of table rows required
-        let tr = new Array(no_of_rows);
+        // Create an array of the no of table rows required 
+        let tr = [];
         for (let j = 0; j < no_of_rows; j++) {
-            tr[j] = document.createElement('tr');
+            tr.push(document.createElement('tr'));
         }
-
+        
         // Create an array of the no of table datas required
-        let td = new Array(no_of_table_data);
+        let td = [];
         for (let j = 0; j < no_of_table_data; j++) {
-            td[j] = document.createElement('td');
+            td.push(document.createElement('td'));
         }
 
         /*********
@@ -75,13 +76,12 @@ class Section {
         img.setAttribute('src', this.news.imageSRC);
         img.className = 'content-image';
         
-        // Modify Table Datas Accordingly
+        // Modify Table Datas Accordingly 
         td[0].appendChild(img);
         td[0].setAttribute('rowspan', '4');
         td[1].textContent = this.news.title;
         td[1].className = 'content-title';
         
-
         // Add the table datas to the first row of the table
         tr[0].appendChild(td[0]);
         tr[0].appendChild(td[1]);
@@ -93,11 +93,12 @@ class Section {
         td[2].textContent =
         `Posted On ${this.news.subtitle.substring(0, 10)} //
         Category: ${this.news.name}.`;
-        tr[1].appendChild(td[2]);
+        tr[1].appendChild(td[2]); 
 
         /*********
         * Create Third Row Of Table
         */
+
         td[3].className = 'content-details';
         if (this.news.content && this.news.content.endsWith(']')) {
             let tempContent = this.news.content;
@@ -108,10 +109,10 @@ class Section {
                 tempContent = tempContent.substring(0, tempContent.length - 1);
                 this.news.content = tempContent;
             }
-        }
+        } 
         td[3].textContent = this.news.content;
-        tr[2].append(td[3]);
-
+        tr[2].appendChild(td[3]);
+        
         /*********
         * Create Final Row Of Table (Continue Reading Button)
         */
@@ -145,7 +146,7 @@ class Modal {
 
         var modal_close = document.createElement('img');
         modal_close.className = 'modal-close-btn';
-        modal_close.setAttribute('src', './assets/close-btn.png');
+        modal_close.src = modalCloseBtn;
         modal_close.setAttribute('alt', 'Close');
         modal_close.setAttribute('class', 'modal-close-btn');
 
@@ -175,6 +176,7 @@ class Modal {
         modal.appendChild(modal_inside);
         let head = document.querySelector('.header');
         head.parentNode.insertBefore (modal, head.nextSibling);
+        // console.log('Inserted Before modal');
     }
 }
 
