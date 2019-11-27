@@ -1,0 +1,12 @@
+div {
+    padding: .6%;
+}
+
+@media only screen and (max-width: 530px) {
+    div {
+        padding: 2%;
+    }
+    .display-4 {
+        font-size: 3rem !important;
+    }
+}

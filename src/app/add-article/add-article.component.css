@@ -1,0 +1,39 @@
+.main-content {
+    padding-top: 2%;
+    overflow-y: scroll !important;
+    height: 76vh;
+}
+
+.display-4 {
+    font-size: 2.4rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.wd {
+    width: 55% !important;
+}
+
+
+input:focus, textarea:focus {
+    border-bottom: 2.5px solid rgb(23, 162, 184);
+    box-shadow: 0px 5px 4px 0 rgb(23, 162, 184, 0.15);
+}
+
+.bg-danger-translucent {
+    background-color: rgb(220, 53, 69, 0.15);
+}
+
+@media only screen and (max-width: 932px) {
+    .wd {
+        width: 88% !important;
+    }
+
+    .display-4 {
+        font-size: 1.8rem;
+    }
+
+    .main-content {
+        padding-top: 6%;
+    }
+
+}

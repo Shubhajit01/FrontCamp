@@ -1,0 +1,19 @@
+<div class="container mt-4 shadow p-0 bg-light" id="content">
+    <div class="container-fluid text-center bg-info text-white p-4">
+        <div class="display-4 text-uppercase">{{ news.title }}</div>
+        <span class="blockquote">Created On: {{ news.subtitle }} || Category: {{ news.sourceId }}</span>
+    </div>
+    <div class="mx-auto mt-3 col-md-6">
+        <img class="img-fluid" src={{news.img}}>
+    </div>
+    <div class="container p-4 blockquote text-center">
+        {{ news.content }}
+    </div>
+
+    <div class="d-flex mt-4 justify-content-center justify-content-md-between align-content-center p-4 flex-wrap">
+        <button class="btn btn-lg btn-danger mt-2 ml-1" routerLink="/news-headlines" (click)="source.sourceName='News Headlines'"> <strong>&lt;</strong> Back To News</button>
+        <button class="btn btn-lg btn-danger mt-2 ml-1" (click)="redirect(news.originalSiteURL)" [disabled]="news.originalSiteURL === ''"> Continue To Main Site <strong>&gt;</strong></button>
+    </div>
+    
+</div>
+
