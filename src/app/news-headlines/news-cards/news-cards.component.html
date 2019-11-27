@@ -1,0 +1,15 @@
+<div class="main-content">
+    <ng-container *ngFor="let news of newsDatas">
+        <div class="container bg-light border" id="content" *ngIf="containsFilterWords(news.description, news.title) && isCorrectNewsChannel(news.source.name)">
+            <div class="row text-center justify-content-md-start justify-content-center">
+                <img class="col-md-3" src="{{ news.urlToImage }}">
+                <div class="right-panel align-self-stretch col-md-9 text-md-left text-center">
+                    <h1 class="display-4">{{ news.title }}</h1>
+                    <h6>Created On: {{ news.publishedAt.substring(0, 10) }} // Category: {{ news.source.id }}</h6>
+                    <span class="text-muted">{{ refine(news.content ? news.content : news.description) }}</span>
+                    <button class="btn btn-info" routerLink="/newsline" [queryParams]="getParams(news)">Continue Reading</button>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>

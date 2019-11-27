@@ -1,0 +1,2 @@
+<app-utilbar (utilSource)="selectedSource=$event" (enteredWords)="filteringWords=$event"></app-utilbar>
+<app-news-cards [sourceName]="selectedSource" [filterWords]="filteringWords"></app-news-cards>
