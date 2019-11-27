@@ -1,7 +1,11 @@
+// Import MODULES.
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+// Import COMPONENTS.
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -11,8 +15,14 @@ import { AddArticleComponent } from './add-article/add-article.component';
 import { UtilbarComponent } from './news-headlines/utilbar/utilbar.component';
 import { NewsCardsComponent } from './news-headlines/news-cards/news-cards.component';
 import { NewslineComponent } from './newsline/newsline.component';
-import { SourceNameTrackerService } from './source-name-tracker.service';
-import { ReactiveFormsModule } from '@angular/forms';
+
+// Import SERVICES.
+import { SourceNameTrackerService } from './services/source-name-tracker.service';
+import { AuthorizerService } from './services/authorizer.service';
+
+// Import PIPES.
+import { TruncatePipe } from './pipes/truncate.pipe';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -24,15 +34,19 @@ import { ReactiveFormsModule } from '@angular/forms';
     AddArticleComponent,
     UtilbarComponent,
     NewsCardsComponent,
-    NewslineComponent
+    NewslineComponent,
+    TruncatePipe,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
-    SourceNameTrackerService
+    SourceNameTrackerService,
+    AuthorizerService
   ],
   bootstrap: [AppComponent]
 })

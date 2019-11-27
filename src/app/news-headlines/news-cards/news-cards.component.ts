@@ -1,57 +1,80 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { data } from "../../content.js";
-import { SourceNameTrackerService } from 'src/app/source-name-tracker.service.js';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { SourceNameTrackerService } from 'src/app/services/source-name-tracker.service.js';
+import { Router } from '@angular/router';
+import { AuthorizerService } from 'src/app/services/authorizer.service';
 
 @Component({
   selector: 'app-news-cards',
   templateUrl: './news-cards.component.html',
   styleUrls: ['./news-cards.component.css']
 })
+
 export class NewsCardsComponent implements OnInit {
 
-  public newsDatas;
-  @Input() sourceName: string;
-  @Input() filterWords: string;
+  newsItems: any[];
+  @Input() selectedSourceName: string;
+  @Input() filteringWords: string;
 
   constructor(
-    public source: SourceNameTrackerService
-  ) { }
-
+    public source: SourceNameTrackerService,
+    private router: Router,
+    private authorizer: AuthorizerService
+    ) { }
+  
   ngOnInit() {
-    this.newsDatas = JSON.parse(data);
-    this.sourceName = 'All';
-    this.filterWords = null;
+    // FETCH ALL data onload from API.
+    this.fetchData('All');
+
+    // INITIALIZE Variables.
+    this.selectedSourceName = 'All';
+    this.filteringWords = '';
   }
 
-  refine(content: string) {
-    if (!content.endsWith("]")) {
-      return content;
-    } 
-    while (!content.endsWith("[")) {
-      content = content.slice(0, -1);
+  fetchData(val: string): void {
+    // FETCH India's News when ALL is SELECTED,
+    // else FETCH selected news.
+    if (val === 'All') {
+      this.source.fetchDataFromAPI('country', 'in').subscribe((data: any) => {
+        this.newsItems = data.articles;
+      })
+    } else {
+      // Convert Name to ID.
+      val = val.replace(/ /g, '-').toLowerCase();
+
+      this.source.fetchDataFromAPI('sources', val).subscribe((data: any) => {
+        this.newsItems = data.articles;
+        console.log(this.newsItems);
+      });
     }
-    content = content.slice(0, -1);
-    return content
   }
 
-  isCorrectNewsChannel(newsName: string) {
-    return newsName === this.sourceName || this.sourceName === 'All';
-  }
-
-  containsFilterWords(description: string, title: string) {
-    return !this.filterWords || description.includes(this.filterWords) || 
-            title.includes(this.filterWords);
-  }
-
-  getParams(ob) {
-    return {
-      'img': ob.urlToImage,
-      'title': ob.title,
-      'subtitle': ob.publishedAt.substring(0, 10),
-      'sourceId': ob.source.id,
-      'name': ob.source.name,
-      'content': this.refine(ob.content ? ob.content : ob.description),
-      'originalSiteURL': ob.url
+  // Pass NEWS as querParams when continue reading is clicked.
+  passParams(news: any): void {
+    this.authorizer.isClicked = true;
+    let queryParam = {
+        title: news.title,
+        subtitle: news.publishedAt.substring(0, 10),
+        sourceId: news.source.id,
+        img: news.urlToImage,
+        content: this.refine(news.content ? news.content : news.description),
+        originalSiteURL: news.url
     };
+    this.router.navigate(['/newsline'], {queryParams: queryParam});
   }
+
+  // REMOVES unwanted trailing characters in the news content.
+  refine(content: string): string {
+    return content.replace(/\[.*\]$/, '');
+  }
+ 
+  // CHECK if the news contains entered filtering words.
+  contains(news: any): boolean {
+    return this.filteringWords === '' ||
+            (news.description && news.description.includes(this.filteringWords)) ||
+            news.title.includes(this.filteringWords) ||
+            news.source.name.includes(this.filteringWords) ||
+            (news.source.id && news.source.id.includes(this.filteringWords)) ||
+            (news.content && news.content.includes(this.filteringWords));
+  }
+
 }

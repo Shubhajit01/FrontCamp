@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
-import { SourceNameTrackerService } from '../source-name-tracker.service';
+import { SourceNameTrackerService } from '../services/source-name-tracker.service';
+import { AuthorizerService } from '../services/authorizer.service';
 
 @Component({
   selector: 'app-newsline',
@@ -9,21 +10,24 @@ import { SourceNameTrackerService } from '../source-name-tracker.service';
 })
 export class NewslineComponent implements OnInit {
 
-  public news;
+  public news: any;
 
   constructor(
-    private route: ActivatedRoute,
-    public source: SourceNameTrackerService
+    public route: ActivatedRoute,
+    public source: SourceNameTrackerService,
+    private authorizer: AuthorizerService
   ) { }
 
-  ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.news = params;
-      this.source.sourceName = this.news.name;
+  ngOnInit() {  
+    // GET parameters present in URL.
+    this.route.queryParams.subscribe((data: Object) => {
+      this.news = data;
     })
+    this.authorizer.isClicked = false;
   }
 
-  redirect(url: string) {
+  // GOTO main site of the NEWS.
+  redirect(url: string): void {
     window.location.href = url;
   }
 }

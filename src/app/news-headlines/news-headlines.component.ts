@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+
+import { NewsCardsComponent } from './news-cards/news-cards.component';
 
 @Component({
   selector: 'app-news-headlines',
@@ -7,13 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsHeadlinesComponent implements OnInit {
 
-  public selectedSource: string;
-  public filteringWords: string;
+  filteringWords: string;
+
+  // GRAB Child Component - NEWS_CARD
+  @ViewChild(NewsCardsComponent, {static: false}) newsCard: NewsCardsComponent;
+  
 
   constructor() { }
 
   ngOnInit() {
+    
   }
 
+  // This function will be called when dropdown is clicked,
+  // which will call the FETCH method present in NEWS_CARD_COMPONENT
+  // which will fetch new data from the new selected source.
+  callNewsCardComponentFetch(event: any): void {
+    this.newsCard.fetchData(event);
+  }
   
 }

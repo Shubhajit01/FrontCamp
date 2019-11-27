@@ -1,4 +1,6 @@
 <app-header></app-header>
-<app-source-name></app-source-name>
+<app-source-name >
+    <div class="container-fluid text-center bg-light display-4 border-bottom">{{ (source.sourceName === 'All' ? 'News Headlines' : source.sourceName) }}</div>
+</app-source-name>
 <router-outlet></router-outlet>
-<app-footer></app-footer>
+<app-footer ></app-footer>

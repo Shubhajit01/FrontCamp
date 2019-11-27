@@ -1,7 +1,7 @@
 <div class="container mt-4 shadow p-0 bg-light" id="content">
     <div class="container-fluid text-center bg-info text-white p-4">
         <div class="display-4 text-uppercase">{{ news.title }}</div>
-        <span class="blockquote">Created On: {{ news.subtitle }} || Category: {{ news.sourceId }}</span>
+        <span class="blockquote">Created On: {{ news.subtitle | date}} || Category: {{ news.sourceId }}</span>
     </div>
     <div class="mx-auto mt-3 col-md-6">
         <img class="img-fluid" src={{news.img}}>

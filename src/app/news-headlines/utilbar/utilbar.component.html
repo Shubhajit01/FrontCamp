@@ -6,7 +6,7 @@
                 Select Source
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdown-list">
-                <span class="dropdown-item" *ngFor="let sourceName of sourceList" (click)="change(sourceName)">{{ sourceName }}</span>
+                <span class="dropdown-item" *ngFor="let sourceName of source.SOURCE_LIST" (click)="dropDownClicked(sourceName)">{{ sourceName }}</span>
             </div>
         </div>
 

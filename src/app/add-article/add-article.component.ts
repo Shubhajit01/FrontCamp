@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SourceNameTrackerService } from '../source-name-tracker.service';
+import { SourceNameTrackerService } from '../services/source-name-tracker.service';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -29,17 +29,16 @@ export class AddArticleComponent implements OnInit {
   ngOnInit() {
   }
 
-  save() {
+  save(): void {
     console.log('Saved!');
   }
 
-  getValue(field: string) {
+  getValue(field: string): any {
     return this.formGroup.get(field);
   }
 
-  isInvalid(field: string) {
+  isInvalid(field: string): boolean {
     return this.getValue(field).invalid &&
             this.getValue(field).touched;
   }
-
 }

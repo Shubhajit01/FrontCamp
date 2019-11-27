@@ -1,2 +1,2 @@
-<app-utilbar (utilSource)="selectedSource=$event" (enteredWords)="filteringWords=$event"></app-utilbar>
-<app-news-cards [sourceName]="selectedSource" [filterWords]="filteringWords"></app-news-cards>
+<app-utilbar (dropDownEmitter)="callNewsCardComponentFetch($event)" (filterClicked)="filteringWords=$event"></app-utilbar>
+<app-news-cards [selectedSourceName]="selectedSourceName" [filteringWords]="filteringWords"></app-news-cards>
