@@ -1,87 +1,156 @@
-<div class="main-content">
-    <div class="wd ml-auto mr-auto form border shadow">
-        <div class="container-fluid text-white text-uppercase text-center bg-info p-3 display-4">Fill the article details</div>
+<div class="wd mx-auto mt-5 form border shadow">
+  <div
+    class="container-fluid text-white text-uppercase text-center bg-dark p-3 display-4"
+  >
+    Fill the article details
+  </div>
 
-        <form class="p-5" [formGroup]="formGroup">
+  <form class="p-5" [formGroup]="formGroup">
+    <div class="form-row justify-content-around">
+      <div class="col-md-6 mb-4">
+        <!-- Input Field -->
+        <input
+          type="text"
+          class="form-control"
+          [class.is-invalid]="isInvalid('heading')"
+          placeholder="Heading"
+          formControlName="heading"
+          required
+        />
 
-            <div class="form-row justify-content-around">
-                <div class="col-md-6 mb-4">
-                    
-                    <!-- Input Field -->
-                    <input type="text" class="form-control" [class.is-invalid]="isInvalid('heading')" placeholder="Heading" formControlName="heading" required>
-                    
-                    <!-- Display Error Messages -->
-                    <div class="bg-danger-translucent text-danger 
-                    container-fluid p-1" *ngIf="isInvalid('heading')">
-                        <small *ngIf="getValue('heading').errors?.required">Heading cannot be empty.</small>
-                        <small *ngIf="getValue('heading').errors?.minlength">Heading must be atleast 5 characters long.</small>
-                    </div>
+        <!-- Display Error Messages -->
+        <div
+          class="bg-danger-translucent text-danger 
+                container-fluid p-1"
+          *ngIf="isInvalid('heading')"
+        >
+          <small *ngIf="getValue('heading').errors?.required"
+            >Heading cannot be empty.</small
+          >
+          <small *ngIf="getValue('heading').errors?.minlength"
+            >Heading must be atleast 5 characters long.</small
+          >
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <!-- Input Field -->
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Date"
+          formControlName="date"
+          [class.is-invalid]="isInvalid('date')"
+          required
+        />
 
-                </div>
-                <div class="col-md-6 mb-4">
-
-                    <!-- Input Field -->
-                    <input type="text" class="form-control" placeholder="Date" formControlName="date" [class.is-invalid]="isInvalid('date')" required>
-
-                    <!-- Display Error Messages -->
-                    <div class="bg-danger-translucent text-danger 
-                    container-fluid p-1" *ngIf="isInvalid('date')">
-                        <small *ngIf="getValue('date').errors?.required">Date cannot be empty.</small>
-                        <small *ngIf="getValue('date').errors?.pattern">Date must be of form MM/DD/YYYY</small>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-row  justify-content-around">
-                <div class="col-md-6 mb-4">
-                    <!-- Input Field -->
-                    <input type="text" class="form-control" placeholder="Short Description" formControlName="shortDescription">
-                </div>
-
-                <div class="col-md-6 mb-4">
-
-                    <!-- Input Field -->
-                    <input type="text" class="form-control" [class.is-invalid]="isInvalid('author')" placeholder="Author" formControlName="author" required>
-
-                    <!-- Display Error Messages -->
-                    <div class="bg-danger-translucent text-danger 
-                        container-fluid p-1" *ngIf="isInvalid('author')">
-                        <small *ngIf="getValue('author').errors?.required">Author cannot be empty.</small>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="form-row justify-content-around">
-                <div class="col-md-6 mb-4">
-                    
-                    <!-- Input Text Area -->
-                    <textarea type="text" class="form-control" [class.is-invalid]="isInvalid('content')" placeholder="Content" rows="5" formControlName="content" required></textarea>
-
-                    <!-- Display Error Messages -->
-                    <div class="bg-danger-translucent text-danger 
-                    container-fluid p-1" *ngIf="isInvalid('content')">
-                        <small *ngIf="getValue('content').errors?.required">Content cannot be empty.</small>
-                        <small *ngIf="getValue('content').errors?.minlength">Content must be of atleast 20 characters long.</small>
-                    </div>
-                </div>
-
-                <div class="form-row form-row-group col-md-6 mb-4 align-content-between">
-                    <input type="text" class="form-control mb-4" placeholder="Source URL" formControlName="sourceURL">
-                    <div class="d-flex justify-content-between w-100">
-                        <button class="btn btn-danger w-25" (click)="save()" [disabled]="isInvalid('heading')
-                                    || isInvalid('date')
-                                    || isInvalid('content')
-                                    || isInvalid('author')" >Save</button>
-                        <button class="btn btn-danger w-25">Cancel</button>
-                    </div>
-                </div>  
-            </div>
-            
-        </form>
+        <!-- Display Error Messages -->
+        <div
+          class="bg-danger-translucent text-danger 
+                container-fluid p-1"
+          *ngIf="isInvalid('date')"
+        >
+          <small *ngIf="getValue('date').errors?.required"
+            >Date cannot be empty.</small
+          >
+          <small *ngIf="getValue('date').errors?.pattern"
+            >Date must be of form MM/DD/YYYY</small
+          >
+        </div>
+      </div>
     </div>
 
-    <div class="d-flex justify-content-center mt-5">
-        <button class="btn btn-lg btn-info" routerLink="/news-headlines" (click)="source.sourceName='News Headlines'">Back to News</button>
+    <div class="form-row  justify-content-around">
+      <div class="col-md-6 mb-4">
+        <!-- Input Field -->
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Short Description"
+          formControlName="shortDescription"
+        />
+      </div>
+
+      <div class="col-md-6 mb-4">
+        <!-- Input Field -->
+        <input
+          type="text"
+          class="form-control"
+          [class.is-invalid]="isInvalid('author')"
+          placeholder="Author"
+          formControlName="author"
+          required
+        />
+
+        <!-- Display Error Messages -->
+        <div
+          class="bg-danger-translucent text-danger 
+                    container-fluid p-1"
+          *ngIf="isInvalid('author')"
+        >
+          <small *ngIf="getValue('author').errors?.required"
+            >Author cannot be empty.</small
+          >
+        </div>
+      </div>
     </div>
+
+    <div class="form-row justify-content-around">
+      <div class="col-md-6 mb-4">
+        <!-- Input Text Area -->
+        <textarea
+          type="text"
+          class="form-control"
+          [class.is-invalid]="isInvalid('content')"
+          placeholder="Content"
+          rows="5"
+          formControlName="content"
+          required
+        ></textarea>
+
+        <!-- Display Error Messages -->
+        <div
+          class="bg-danger-translucent text-danger 
+                container-fluid p-1"
+          *ngIf="isInvalid('content')"
+        >
+          <small *ngIf="getValue('content').errors?.required"
+            >Content cannot be empty.</small
+          >
+          <small *ngIf="getValue('content').errors?.minlength"
+            >Content must be of atleast 20 characters long.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-row form-row-group col-md-6 mb-4 align-content-between">
+        <input
+          type="text"
+          class="form-control mb-4"
+          placeholder="Source URL"
+          formControlName="sourceURL"
+        />
+        <div class="d-flex justify-content-between w-100">
+          <button
+            class="btn btn-danger w-25"
+            (click)="save()"
+            [disabled]="
+              isInvalid('heading') ||
+              isInvalid('date') ||
+              isInvalid('content') ||
+              isInvalid('author')
+            "
+          >
+            Save
+          </button>
+          <button class="btn btn-danger w-25">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="d-flex justify-content-center mt-5">
+  <button class="btn btn-lg btn-info" routerLink="/news-headlines">
+    Back to News
+  </button>
 </div>

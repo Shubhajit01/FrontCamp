@@ -1,53 +1,41 @@
-// Import MODULES.
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { HttpClientModule } from "@angular/common/http";
 
-// Import COMPONENTS.
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { SourceNameComponent } from './source-name/source-name.component';
-import { NewsHeadlinesComponent } from './news-headlines/news-headlines.component';
-import { AddArticleComponent } from './add-article/add-article.component';
-import { UtilbarComponent } from './news-headlines/utilbar/utilbar.component';
-import { NewsCardsComponent } from './news-headlines/news-cards/news-cards.component';
-import { NewslineComponent } from './newsline/newsline.component';
-
-// Import SERVICES.
-import { SourceNameTrackerService } from './services/source-name-tracker.service';
-import { AuthorizerService } from './services/authorizer.service';
-
-// Import PIPES.
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { HeaderComponent } from "./header/header.component";
+import { NewsHeadlinesComponent } from "./news-headlines/news-headlines.component";
+import { FooterComponent } from "./footer/footer.component";
+import { NewsCardComponent } from "./news-headlines/news-card/news-card.component";
+import { AddArticleComponent } from "./add-article/add-article.component";
+import { ReactiveFormsModule } from "@angular/forms";
 import { TruncatePipe } from './pipes/truncate.pipe';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { NewsDetailsComponent } from './news-details/news-details.component';
+import { Error404Component } from './error404/error404.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
-    SourceNameComponent,
     NewsHeadlinesComponent,
+    FooterComponent,
+    NewsCardComponent,
     AddArticleComponent,
-    UtilbarComponent,
-    NewsCardsComponent,
-    NewslineComponent,
     TruncatePipe,
-    PageNotFoundComponent
+    NewsDetailsComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     ReactiveFormsModule,
-    HttpClientModule
+    FontAwesomeModule
   ],
-  providers: [
-    SourceNameTrackerService,
-    AuthorizerService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

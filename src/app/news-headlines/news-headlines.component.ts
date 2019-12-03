@@ -1,31 +1,83 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { MasterService } from "./../services/master.service";
+import { Component, OnInit, ViewChild } from "@angular/core";
 
-import { NewsCardsComponent } from './news-cards/news-cards.component';
+import { SOURCES_URL } from "../model/const.js";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-news-headlines',
-  templateUrl: './news-headlines.component.html',
-  styleUrls: ['./news-headlines.component.css']
+  selector: "app-news-headlines",
+  templateUrl: "./news-headlines.component.html",
+  styleUrls: [
+    "./news-headlines.component.css",
+    "./news-headlines-responsive.component.css"
+  ]
 })
 export class NewsHeadlinesComponent implements OnInit {
+  private defaultAllValue = { name: "All", id: "all" };
 
-  filteringWords: string;
+  public newsSourceList: { name: string; id: string }[] = [
+    this.defaultAllValue
+  ];
 
-  // GRAB Child Component - NEWS_CARD
-  @ViewChild(NewsCardsComponent, {static: false}) newsCard: NewsCardsComponent;
-  
+  public newsDatas: any[];
+  public filteredList: any[];
 
-  constructor() { }
+  constructor(private master: MasterService, private router: Router) {}
 
   ngOnInit() {
-    
+    this.master.clickedContinue = false;
+    this.storeSourceList();
+    this.getNewsData("all");
+    this.master.setSourceName(this.defaultAllValue.name);
   }
 
-  // This function will be called when dropdown is clicked,
-  // which will call the FETCH method present in NEWS_CARD_COMPONENT
-  // which will fetch new data from the new selected source.
-  callNewsCardComponentFetch(event: any): void {
-    this.newsCard.fetchData(event);
+  // FETCH the source list from the API and
+  // assign that to the newsSourceList
+  storeSourceList(): void {
+    this.master.fetchData(SOURCES_URL).subscribe((data: any) => {
+      for (const source of data.sources) {
+        this.newsSourceList.push({ name: source.name, id: source.id });
+      }
+    });
   }
-  
+
+  // FETCH the selected news channel data from the API and
+  // assign that to the newsDatas
+  getNewsData(source: string): void {
+    let url = `https://newsapi.org/v2/top-headlines?${
+      source === "all" ? "country=in" : `sources=${source}`
+    }&apiKey=003af5ea57da439c858fe64adb9253b4`;
+
+    this.master.fetchData(url).subscribe((data: any) => {
+      this.filteredList = data.articles;
+      this.newsDatas = this.filteredList;
+    });
+  }
+
+  // When clicked on an option in select
+  // CHANGE the selected source id to
+  // the news one and refetch the data.
+  changeNewsSource(selectedValueID: number): void {
+    const [sourceName, sourceID] = [
+      this.newsSourceList[selectedValueID].name,
+      this.newsSourceList[selectedValueID].id
+    ];
+
+    this.master.setSourceName(sourceName);
+
+    this.getNewsData(sourceID);
+  }
+
+  openArticleCreation(): void {
+    this.master.setSourceName("Add Article");
+    this.router.navigate(["/add-article"]);
+  }
+
+  onFilter(filterWords: string): void {
+    this.filteredList = this.newsDatas;
+    let pattern = new RegExp(filterWords, "i");
+    this.filteredList = this.filteredList.filter(news => {
+      return !filterWords || pattern.test(`${news.title} ${news.content}`);
+    });
+  }
 }

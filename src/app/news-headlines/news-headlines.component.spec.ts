@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { NewsHeadlinesComponent } from './news-headlines.component';
+import { NewsHeadlinesComponent } from "./news-headlines.component";
 
-describe('NewsHeadlinesComponent', () => {
+describe("NewsHeadlinesComponent", () => {
   let component: NewsHeadlinesComponent;
   let fixture: ComponentFixture<NewsHeadlinesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewsHeadlinesComponent ]
-    })
-    .compileComponents();
+      declarations: [NewsHeadlinesComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('NewsHeadlinesComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
