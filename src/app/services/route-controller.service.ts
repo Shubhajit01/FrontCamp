@@ -1,15 +1,12 @@
 import { Router } from '@angular/router';
 import { MasterService } from './master.service';
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class RouteControllerService {
-  constructor(
-    private master: MasterService,
-    private router: Router
-  ) {}
+  constructor(private master: MasterService, private router: Router) {}
 
   canActivate(): boolean {
     if (!this.master.clickedContinue) {
