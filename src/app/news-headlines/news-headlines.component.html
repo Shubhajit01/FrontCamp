@@ -53,7 +53,8 @@
 </div>
 
 <div class="mt-5 news-cards" *ngIf="!loading">
-  <ng-container *ngFor="let news of filteredList">
-    <app-news-card [news]="news"></app-news-card>
-  </ng-container>
+  <app-news-card
+    *ngFor="let news of filteredList"
+    [news]="news"
+  ></app-news-card>
 </div>

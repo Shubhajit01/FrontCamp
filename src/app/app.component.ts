@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component, RootRenderer } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'news-aggregator';
+
+  constructor(
+    public router: Router
+  ) {}
+
 }
