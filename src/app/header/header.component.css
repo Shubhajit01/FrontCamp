@@ -1,0 +1,34 @@
+nav img {
+  filter: invert(1);
+  width: 35px;
+  height: auto;
+}
+
+#username-panel {
+  font-size: 2rem;
+  padding: 0 !important;
+  color: white;
+  cursor: pointer;
+}
+
+.dropdown-divider {
+  border-top: 1px solid rgb(255, 255, 255, 0.5) !important;
+}
+
+.dropdown-item:hover {
+  color: black !important;
+  cursor: pointer;
+}
+
+.dropdown-menu:active {
+  color: black !important;
+}
+
+.dropdown-item:first-child {
+  cursor: text !important;
+}
+
+.dropdown-item:first-child:hover {
+  background-color: transparent !important;
+  color: white !important;
+}
