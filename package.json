@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Shubhajit01/FrontCamp/issues"
   },
-  "homepage": "https://github.com/Shubhajit01/FrontCamp#readme"
+  "homepage": "https://github.com/Shubhajit01/FrontCamp#readme",
+  "dependencies": {
+    "chalk": "^3.0.0"
+  }
 }
