@@ -1,0 +1,89 @@
+.news-details {
+  border-radius: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#title {
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+#subtitle {
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+#content {
+  text-align: justify;
+  text-align-last: center;
+}
+
+.img-fluid {
+  width: 50%;
+  min-width: 250px;
+  height: auto;
+  object-fit: cover;
+}
+
+#separator {
+  width: 50%;
+  border: 1px solid black;
+}
+
+#icon-btn1,
+#icon-btn2 {
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+}
+
+#icon-btn1::before,
+#icon-btn2::after {
+  content: "";
+  color: white;
+  text-align: center;
+  background-color: #dc3545;
+  width: 0;
+  opacity: 0;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: -1;
+  transition: 0.2s ease-in-out;
+  font-size: 0rem;
+}
+
+#icon-btn1:hover::before,
+#icon-btn2:hover::after {
+  width: 250px;
+  opacity: 1;
+  font-size: 1.2rem;
+}
+
+#icon-btn1::before {
+  content: "Back To News";
+  left: 65%;
+  top: 9%;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+#icon-btn2::after {
+  content: "Go to main site";
+  right: 65%;
+  bottom: 9%;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+#arrows-responsive {
+  display: none;
+  font-size: 1.2rem;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-top: 0.2rem;
+  margin-bottom: 3rem;
+  width: 80%;
+}

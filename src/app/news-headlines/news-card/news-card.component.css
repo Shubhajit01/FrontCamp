@@ -1,0 +1,35 @@
+.display-4 {
+  font-size: 2rem !important;
+}
+
+img {
+  width: 250px;
+  height: auto;
+  object-fit: cover;
+  position: relative;
+  z-index: 0;
+}
+
+#content {
+  margin: 1% auto;
+  padding: 1%;
+  transition: 0.5s ease-in-out;
+}
+
+#content:hover {
+  transform: scale(1.03);
+}
+
+button {
+  display: block !important;
+  margin-top: 12px;
+  transition: 0.25s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.w-35 {
+  width: 35% !important;
+}

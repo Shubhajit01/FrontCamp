@@ -1,0 +1,60 @@
+<div class="bg-light p-4 shadow sticky-top">
+  <div class="row">
+    <!-- Dropdown -->
+    <div class="dropdown margin-bottom w-100 col-md-2">
+      <select
+        name="dropdown"
+        id="dropdown"
+        class="form-control"
+        (change)="changeNewsSource(select.value)"
+        #select
+      >
+        <option
+          *ngFor="let source of newsSourceList; index as id"
+          [value]="id"
+          >{{ source.name }}</option
+        >
+      </select>
+    </div>
+
+    <!-- Filter -->
+    <div class="input-group col-md-2 w-100 ml-auto mr-auto margin-bottom">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Type Your Text..."
+        aria-label="filter-input"
+        aria-describedby="basic-addon2"
+        (keyup.enter)="onFilter(filterInputBox.value)"
+        #filterInputBox
+      />
+      <div class="input-group-append">
+        <button class="btn btn-info" (click)="onFilter(filterInputBox.value)">
+          Filter
+        </button>
+      </div>
+    </div>
+
+    <!-- Add Article -->
+    <div class="col-md-2 text-center text-md-right">
+      <button
+        class="btn btn-info"
+        type="button"
+        (click)="openArticleCreation()"
+      >
+        Add Article
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="loader" *ngIf="loading">
+  <img src="../../assets/loading.gif" alt="Loading" />
+</div>
+
+<div class="mt-5 news-cards" *ngIf="!loading">
+  <app-news-card
+    *ngFor="let news of filteredList"
+    [news]="news"
+  ></app-news-card>
+</div>

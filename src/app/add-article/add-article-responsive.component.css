@@ -1,0 +1,13 @@
+@media only screen and (max-width: 932px) {
+  .wd {
+    width: 88% !important;
+  }
+
+  .display-4 {
+    font-size: 1.8rem;
+  }
+
+  .main-content {
+    padding-top: 6%;
+  }
+}
