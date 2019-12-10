@@ -1,0 +1,23 @@
+{
+  "name": "task-9",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Question 2.js",
+  "devDependencies": {
+    "codemon": "^0.1.1-development"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon 'Question 2.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shubhajit01/FrontCamp.git"
+  },
+  "author": "Shubhajit Chatterjee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shubhajit01/FrontCamp/issues"
+  },
+  "homepage": "https://github.com/Shubhajit01/FrontCamp#readme"
+}
